@@ -33,6 +33,9 @@
     initSmoothCounters();
     initHeroCounters();
     initSmoothAnchorLinks();
+    initProductModal();
+    initStaggerReveal();
+    initSectionRevealLines();
 
     var yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -99,6 +102,7 @@
 
     bindAddToCart();
     bind3DTilt();
+    bindProductCardClick();
   }
 
   /* ==================== CATEGORY FILTER ==================== */
@@ -121,6 +125,143 @@
     });
   }
 
+  /* ==================== ADD TO CART ==================== */
+  function bindAddToCart() {
+    var buttons = document.querySelectorAll('[data-add]');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        btn.style.transform = 'scale(1.4)';
+        setTimeout(function () { btn.style.transform = ''; }, 250);
+        showToast('Ditambahkan ke keranjang');
+      });
+    });
+  }
+
+  /* ==================== PRODUCT MODAL ==================== */
+  var SIZES = ['S', 'M', 'L', 'XL'];
+
+  function initProductModal() {
+    var overlay = document.getElementById('productModal');
+    var closeBtn = document.getElementById('modalClose');
+    if (!overlay || !closeBtn) return;
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    var cartBtn = document.getElementById('modalCartBtn');
+    if (cartBtn) {
+      cartBtn.addEventListener('click', function () {
+        var nameEl = document.getElementById('modalName');
+        if (nameEl) showToast(nameEl.textContent + ' ditambahkan ke keranjang');
+        closeModal();
+      });
+    }
+  }
+
+  function openModal(productId) {
+    var overlay = document.getElementById('productModal');
+    if (!overlay) return;
+
+    var product = PRODUCTS.find(function (p) { return p.id === productId; });
+    if (!product) return;
+
+    var letter = document.getElementById('modalLetter');
+    var badge = document.getElementById('modalBadge');
+    var cat = document.getElementById('modalCat');
+    var name = document.getElementById('modalName');
+    var desc = document.getElementById('modalDesc');
+    var price = document.getElementById('modalPrice');
+    var status = document.getElementById('modalStatus');
+    var sizesEl = document.getElementById('modalSizes');
+
+    if (letter) letter.textContent = product.name.charAt(0);
+    if (badge) {
+      badge.textContent = product.badge || '';
+      badge.style.display = product.badge ? 'block' : 'none';
+    }
+    if (cat) cat.textContent = product.cat;
+    if (name) name.textContent = product.name;
+    if (desc) desc.textContent = product.desc;
+    if (price) price.textContent = formatPrice(product.price);
+    if (status) status.textContent = product.badge || 'Tersedia';
+    if (sizesEl) {
+      sizesEl.innerHTML = '';
+      SIZES.forEach(function (s, i) {
+        var btn = document.createElement('button');
+        btn.className = 'modal-size-btn' + (i === 1 ? ' active' : '');
+        btn.textContent = s;
+        btn.addEventListener('click', function () {
+          sizesEl.querySelectorAll('.modal-size-btn').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+        });
+        sizesEl.appendChild(btn);
+      });
+    }
+
+    document.body.style.overflow = 'hidden';
+    overlay.classList.add('active');
+  }
+
+  function closeModal() {
+    var overlay = document.getElementById('productModal');
+    if (!overlay) return;
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function bindProductCardClick() {
+    var cards = document.querySelectorAll('.product-card');
+    cards.forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        if (e.target.closest('.add-btn')) return;
+        var id = card.getAttribute('data-id');
+        if (id) openModal(id);
+      });
+    });
+  }
+
+  /* ==================== STAGGER REVEAL (per-element) ==================== */
+  function initStaggerReveal() {
+    var staggerEls = document.querySelectorAll('.reveal-stagger');
+    if (!staggerEls.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    staggerEls.forEach(function (el) { observer.observe(el); });
+  }
+
+  /* ==================== SECTION REVEAL LINES ==================== */
+  function initSectionRevealLines() {
+    var lines = document.querySelectorAll('.section-reveal-line');
+    if (!lines.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    lines.forEach(function (el) { observer.observe(el); });
+  }
+
   /* ==================== 3D TILT ==================== */
   function bind3DTilt() {
     var cards = document.querySelectorAll('.product-card');
@@ -134,19 +275,6 @@
       card.addEventListener('mouseleave', function () {
         card.style.transform = 'translateY(0)';
         card.style.transition = 'transform 0.4s cubic-bezier(0.16,1,0.3,1)';
-      });
-    });
-  }
-
-  /* ==================== ADD TO CART ==================== */
-  function bindAddToCart() {
-    var buttons = document.querySelectorAll('[data-add]');
-    buttons.forEach(function (btn) {
-      btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        btn.style.transform = 'scale(1.4)';
-        setTimeout(function () { btn.style.transform = ''; }, 250);
-        showToast('Ditambahkan ke keranjang');
       });
     });
   }
