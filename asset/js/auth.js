@@ -82,19 +82,6 @@
   };
   const saveUsers = users => localStorage.setItem('stussy_users', JSON.stringify(users));
 
-  // strength meter
-  const regPassword = document.getElementById('regPassword');
-  const strengthBar = document.getElementById('strengthBar');
-  regPassword.addEventListener('input', () => {
-    const v = regPassword.value;
-    let score = 0;
-    if (v.length >= 6) score++;
-    if (v.length >= 10) score++;
-    if (/[A-Z]/.test(v) && /[a-z]/.test(v)) score++;
-    if (/\d/.test(v) && /[^A-Za-z0-9]/.test(v)) score++;
-    strengthBar.className = 'strength' + (score ? ' l' + Math.min(score, 4) : '');
-  });
-
   function withLoading(btn, fn, doneMsg) {
     btn.classList.add('loading');
     setTimeout(() => {
@@ -182,7 +169,6 @@
       localStorage.setItem('stussy_session', JSON.stringify({ name: name.trim(), email: email.trim(), loginAt: Date.now() }));
       showToast(`Akun ${name.trim()} berhasil dibuat! 🎉`);
       registerForm.reset();
-      strengthBar.className = 'strength';
       setTimeout(() => { window.location.href = '../index.html'; }, 1100);
     });
   });
@@ -200,8 +186,5 @@
   document.getElementById('forgotLink').addEventListener('click', e => {
     e.preventDefault();
     showToast('Link reset dikirim ke email kamu (demo).');
-  });
-  document.getElementById('googleLogin').addEventListener('click', () => {
-    showToast('Login Google segera hadir (demo).');
   });
 })();
