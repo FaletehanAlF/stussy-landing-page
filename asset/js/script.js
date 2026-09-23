@@ -1,12 +1,9 @@
-/* ==========================================================
-   STUSSY LANDING — script.js
-   Pure B&W, zero-fetch, capsule navbar, smooth & elegant
-   ========================================================== */
+
 
 (function () {
   'use strict';
 
-  /* ==================== DATA ==================== */
+  
   var PRODUCTS = [
     { id: 'p01', name: '8-Ball Tee',     cat: 'tees',      price: 449000,  badge: 'NEW',          desc: 'Katun 240gsm, sablon puff signature bola 8.' },
     { id: 'p02', name: 'Stock Hoodie',   cat: 'hoodies',   price: 899000,  badge: 'BEST SELLER',  desc: 'Fleece 380gsm brushed, box logo bordir dada.' },
@@ -18,7 +15,7 @@
     { id: 'p08', name: 'Tool Bag Crossbody', cat: 'accessories', price: 549000, badge: '',       desc: 'Cordura 1000D, strap adjustable, water resist.' }
   ];
 
-  /* ==================== INIT ==================== */
+  
   document.addEventListener('DOMContentLoaded', function () {
     renderProducts(PRODUCTS);
     initNavbar();
@@ -41,7 +38,7 @@
     if (yearEl) yearEl.textContent = new Date().getFullYear();
   });
 
-  /* ==================== PRODUCTS ==================== */
+  
   function formatPrice(n) {
     return 'Rp' + Number(n).toLocaleString('id-ID');
   }
@@ -105,7 +102,7 @@
     bindProductCardClick();
   }
 
-  /* ==================== CATEGORY FILTER ==================== */
+  
   function initCategoryFilter() {
     var buttons = document.querySelectorAll('.cat-card');
     if (!buttons.length) return;
@@ -125,7 +122,7 @@
     });
   }
 
-  /* ==================== ADD TO CART ==================== */
+  
   function bindAddToCart() {
     var buttons = document.querySelectorAll('[data-add]');
     buttons.forEach(function (btn) {
@@ -138,7 +135,7 @@
     });
   }
 
-  /* ==================== PRODUCT MODAL ==================== */
+  
   var SIZES = ['S', 'M', 'L', 'XL'];
 
   function initProductModal() {
@@ -160,7 +157,9 @@
     if (cartBtn) {
       cartBtn.addEventListener('click', function () {
         var nameEl = document.getElementById('modalName');
-        if (nameEl) showToast(nameEl.textContent + ' ditambahkan ke keranjang');
+        var sizeEl = document.querySelector('#modalSizes .modal-size-btn.active');
+        var size = sizeEl ? sizeEl.textContent : '';
+        if (nameEl) showToast(nameEl.textContent + (size ? ' (Ukuran ' + size + ')' : '') + ' ditambahkan ke keranjang');
         closeModal();
       });
     }
@@ -228,7 +227,7 @@
     });
   }
 
-  /* ==================== STAGGER REVEAL (per-element) ==================== */
+  
   function initStaggerReveal() {
     var staggerEls = document.querySelectorAll('.reveal-stagger');
     if (!staggerEls.length) return;
@@ -245,7 +244,7 @@
     staggerEls.forEach(function (el) { observer.observe(el); });
   }
 
-  /* ==================== SECTION REVEAL LINES ==================== */
+  
   function initSectionRevealLines() {
     var lines = document.querySelectorAll('.section-reveal-line');
     if (!lines.length) return;
@@ -262,7 +261,7 @@
     lines.forEach(function (el) { observer.observe(el); });
   }
 
-  /* ==================== 3D TILT ==================== */
+  
   function bind3DTilt() {
     var cards = document.querySelectorAll('.product-card');
     cards.forEach(function (card) {
@@ -279,7 +278,7 @@
     });
   }
 
-  /* ==================== NAVBAR ==================== */
+  
   function initNavbar() {
     var navbar = document.getElementById('navbar');
     if (!navbar) return;
@@ -289,7 +288,7 @@
     }, { passive: true });
   }
 
-  /* ==================== MOBILE MENU ==================== */
+  
   function initMobileMenu() {
     var btn = document.getElementById('hamburger');
     var menu = document.getElementById('mobileMenu');
@@ -318,7 +317,7 @@
     });
   }
 
-  /* ==================== ACTIVE NAV LINK ==================== */
+  
   function initActiveLink() {
     var sections = document.querySelectorAll('main section[id], .hero[id]');
     var navLinks = document.querySelectorAll('.nav-links .nav-link');
@@ -338,7 +337,7 @@
     sections.forEach(function (s) { observer.observe(s); });
   }
 
-  /* ==================== SCROLL REVEAL ==================== */
+  
   function initScrollReveal() {
     var els = document.querySelectorAll('.reveal');
     if (!els.length) return;
@@ -355,7 +354,7 @@
     els.forEach(function (el) { observer.observe(el); });
   }
 
-  /* ==================== HERO PARALLAX ==================== */
+  
   function initHeroParallax() {
     var hero = document.querySelector('.hero');
     var heroTitle = document.querySelector('.hero-title');
@@ -381,7 +380,7 @@
     }, { passive: true });
   }
 
-  /* ==================== SCROLL PROGRESS ==================== */
+  
   function initScrollProgress() {
     var bar = document.createElement('div');
     bar.className = 'scroll-progress';
@@ -395,7 +394,7 @@
     }, { passive: true });
   }
 
-  /* ==================== ANIMATED COUNTERS ==================== */
+  
   function initSmoothCounters() {
     var stats = document.querySelectorAll('.about-stat-num');
     if (!stats.length) return;
@@ -438,7 +437,7 @@
     if (statsSection) observer.observe(statsSection);
   }
 
-  /* ==================== HERO COUNTERS & SOCIAL PROOF ==================== */
+  
   function initHeroCounters() {
     var counters = document.querySelectorAll('.hero-sp-num, .hero-hl-counter');
     if (!counters.length) return;
@@ -472,7 +471,7 @@
     if (hero) observer.observe(hero);
   }
 
-  /* ==================== SMOOTH ANCHOR LINKS ==================== */
+  
   function initSmoothAnchorLinks() {
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
       anchor.addEventListener('click', function (e) {
@@ -481,14 +480,14 @@
         var target = document.querySelector(href);
         if (!target) return;
         e.preventDefault();
-        var offset = 80; // navbar height offset
+        var offset = 80;
         var top = target.getBoundingClientRect().top + window.scrollY - offset;
         window.scrollTo({ top: top, behavior: 'smooth' });
       });
     });
   }
 
-  /* ==================== CONTACT FORM ==================== */
+  
   function initContactForm() {
     var form = document.getElementById('contactForm');
     if (!form) return;
@@ -542,7 +541,7 @@
     if (field) field.classList.remove('invalid');
   }
 
-  /* ==================== NEWSLETTER ==================== */
+  
   function initNewsletter() {
     var form = document.getElementById('newsletterForm');
     var msg = document.getElementById('newsletterMsg');
@@ -560,7 +559,7 @@
     });
   }
 
-  /* ==================== TOAST ==================== */
+  
   var toastTimer = null;
   function showToast(message) {
     var toast = document.getElementById('toast');

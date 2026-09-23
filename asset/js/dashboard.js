@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ==================== ANIMATED STAT COUNTERS ==================== */
+  
   var counters = document.querySelectorAll('.dash-stat-num');
   if (counters.length) {
     counters.forEach(function (el) {
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ==================== BAR CHART ==================== */
+  
   var chartEl = document.getElementById('dashChart');
   if (chartEl) {
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'];
