@@ -248,31 +248,30 @@ body {
 }
 .auth-tabs.register .auth-tab-indicator { transform: translateX(100%); }
 
-/* forms */
-.auth-form { display: none; flex-direction: column; gap: 16px; }
+/* forms — jarak lega, satu kolom */
+.auth-form { display: none; flex-direction: column; gap: 24px; }
 .auth-form.active { display: flex; animation: fadeSlide .35s ease; }
 @keyframes fadeSlide {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.field { display: flex; flex-direction: column; gap: 7px; }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 10px; }
 .field label {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted-2);
 }
 .input-wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   background: var(--input-bg);
   border: 1px solid #232323;
   border-radius: var(--radius-sm);
-  padding: 0 14px;
+  padding: 0 16px;
   transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
 }
 .input-wrap:focus-within {
@@ -288,8 +287,8 @@ body {
   outline: none;
   color: #fff;
   font-family: var(--font-body);
-  font-size: 14.5px;
-  padding: 14px 0;
+  font-size: 15px;
+  padding: 16px 0;
   min-width: 0;
 }
 .input-wrap input::placeholder { color: #555; }
@@ -313,24 +312,12 @@ body {
 .field-error.show { display: block; }
 .input-wrap.invalid { border-color: var(--error); box-shadow: 0 0 0 3px rgba(255,92,92,0.1); }
 
-.strength { display: flex; gap: 6px; margin-top: 8px; }
-.strength span {
-  height: 4px;
-  flex: 1;
-  border-radius: 999px;
-  background: #222;
-  transition: background .25s ease;
-}
-.strength.l1 span:nth-child(1) { background: #ff5c5c; }
-.strength.l2 span:nth-child(-n+2) { background: #fbbf24; }
-.strength.l3 span:nth-child(-n+3) { background: #a3e635; }
-.strength.l4 span:nth-child(-n+4) { background: var(--success); }
-
 .auth-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 13.5px;
+  margin-top: -6px;
 }
 .remember {
   display: flex;
@@ -403,8 +390,8 @@ body {
 .btn-solid:active { transform: translateY(0) scale(.97); }
 .btn-ghost { background: transparent; color: #fff; border: 1px solid #2a2a2a; }
 .btn-ghost:hover { border-color: #fff; transform: translateY(-2px); }
-.btn-lg { padding: 14px 26px; font-size: 13px; }
-.full-width { width: 100%; }
+.btn-lg { padding: 16px 26px; font-size: 13px; }
+.full-width { width: 100%; margin-top: 4px; }
 .btn.loading { pointer-events: none; opacity: .8; }
 .btn.loading .btn-text::after {
   content: "";
@@ -424,35 +411,12 @@ body {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #555;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-.divider::before, .divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #1e1e1e;
-}
-
 .switch-text {
   text-align: center;
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--muted);
-  margin-top: 4px;
-}
-.auth-secure {
-  margin-top: auto;
-  padding-top: 22px;
-  text-align: center;
-  font-size: 12px;
-  color: #555;
+  margin-top: 8px;
+  line-height: 1.6;
 }
 
 /* toast */
@@ -479,14 +443,13 @@ body {
 
 /* responsive */
 @media (max-width: 860px) {
+  .auth-wrap { padding: 24px 20px 48px; }
   .auth-card { grid-template-columns: 1fr; max-width: 480px; }
-  .auth-visual { min-height: 260px; }
-  .auth-visual-content { padding: 24px 22px; }
-  .auth-visual-title { font-size: 44px; }
+  .auth-visual { min-height: 240px; }
+  .auth-visual-content { padding: 28px 26px; }
+  .auth-visual-title { font-size: 42px; }
   .auth-visual-sub { display: none; }
-  .auth-perks { display: none; }
-  .auth-form-side { padding: 28px 22px 24px; }
-  .field-row { grid-template-columns: 1fr; }
+  .auth-form-side { padding: 40px 28px; }
 }
 @media (max-width: 420px) {
   .auth-topbar { padding: 14px 16px; }
