@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STUSSY — Login & Register</title>
+<meta name="description" content="Masuk atau buat akun Stussy Tribe untuk akses drop terbaru.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../asset/css/auth.css">
+</head>
+<body>
+
+<div class="auth-bg" aria-hidden="true">
+  <span class="auth-bg-word">STUSSY</span>
+  <div class="auth-bg-grain"></div>
+</div>
+
+<header class="auth-topbar">
+  <a href="../index.html" class="auth-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    Kembali ke Toko
+  </a>
+  <a href="../index.html" class="auth-mini-logo">
+    <img src="https://i.pinimg.com/736x/df/c0/4a/dfc04af97dde2af59d2bb81ca39d3ee2.jpg" alt="STUSSY">
+  </a>
+</header>
+
+<main class="auth-wrap">
+  <section class="auth-card">
+
+    <!-- LEFT : visual branding -->
+    <aside class="auth-visual">
+      <img src="https://i.pinimg.com/736x/6e/51/26/6e5126b6eed20eea1fc52b2c5ab4c505.jpg" alt="Stussy Tribe" class="auth-visual-img" loading="lazy">
+      <div class="auth-visual-overlay"></div>
+      <div class="auth-visual-content">
+        <p class="auth-eyebrow">International Stussy Tribe — Since 1980</p>
+        <h2 class="auth-visual-title">JOIN<br>THE TRIBE.</h2>
+        <p class="auth-visual-sub">Dapatkan info drop terbaru, checkout lebih cepat, dan wishlist tersimpan otomatis.</p>
+        <ul class="auth-perks">
+          <li><span class="perk-dot"></span>Early access drop terbatas</li>
+          <li><span class="perk-dot"></span>Checkout 1-klik & lacak pesanan</li>
+          <li><span class="perk-dot"></span>Promo khusus member</li>
+        </ul>
+        <span class="auth-graffiti">stay fresh!</span>
+      </div>
+    </aside>
+
+    <!-- RIGHT : form -->
+    <div class="auth-form-side">
+      <div class="auth-form-head">
+        <p class="auth-eyebrow dark">Welcome back</p>
+        <h1 class="auth-title" id="authTitle">LOGIN</h1>
+        <p class="auth-desc" id="authDesc">Masuk ke akunmu untuk lanjut belanja drop terbaru.</p>
+      </div>
+
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="tabLogin" role="tab" aria-selected="true">Login</button>
+        <button class="auth-tab" id="tabRegister" role="tab" aria-selected="false">Register</button>
+        <span class="auth-tab-indicator" id="tabIndicator"></span>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form class="auth-form active" id="loginForm" novalidate>
+        <div class="field">
+          <label for="loginEmail">Email</label>
+          <div class="input-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <input type="email" id="loginEmail" name="email" placeholder="kamu@email.com" autocomplete="email" required>
+          </div>
+          <span class="field-error" id="err-loginEmail"></span>
+        </div>
+
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <div class="input-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="loginPassword" name="password" placeholder="••••••••" autocomplete="current-password" required minlength="6">
+            <button type="button" class="toggle-pass" data-target="loginPassword" aria-label="Tampilkan password">👁</button>
+          </div>
+          <span class="field-error" id="err-loginPassword"></span>
+        </div>
+
+        <div class="auth-row">
+          <label class="remember">
+            <input type="checkbox" id="rememberMe" checked>
+            <span class="checkmark"></span>
+            Ingat saya
+          </label>
+          <a href="#" class="link" id="forgotLink">Lupa password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-solid btn-lg full-width" id="loginBtn">
+          <span class="btn-text">Masuk</span>
+        </button>
+
+        <div class="divider"><span>atau</span></div>
+
+        <button type="button" class="btn btn-ghost btn-lg full-width" id="googleLogin">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.3c0-.9-.1-1.5-.3-2.3H12v4.3h6.5c-.1 1.1-.8 2.7-2.4 3.8l-.1.1 3.5 2.7.2.1c2.2-2 3.8-5 3.8-8.7z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 7.9-2.9l-3.8-2.9c-1 .7-2.4 1.2-4.1 1.2-3.1 0-5.8-2.1-6.8-5l-.1.1-3.6 2.8v.1C3.5 21.3 7.4 24 12 24z"/><path fill="#FBBC05" d="M5.2 14.4c-.2-.7-.4-1.5-.4-2.4s.1-1.7.4-2.4l-.1-.1-3.6-2.8-.1.1C.5 8.7 0 10.2 0 12s.5 3.3 1.4 4.7l3.8-2.3z"/><path fill="#EA4335" d="M12 4.7c1.8 0 3 .8 3.7 1.4l3.3-3.2C17.9 1.1 15.2 0 12 0 7.4 0 3.5 2.7 1.4 6.5l3.8 2.9c1-2.9 3.7-4.7 6.8-4.7z"/></svg>
+          Masuk dengan Google
+        </button>
+
+        <p class="switch-text">Belum punya akun? <button type="button" class="link-btn" data-goto="register">Daftar gratis</button></p>
+      </form>
+
+      <!-- REGISTER FORM -->
+      <form class="auth-form" id="registerForm" novalidate>
+        <div class="field">
+          <label for="regName">Username</label>
+          <div class="input-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <input type="text" id="regName" name="username" placeholder="nama_kamu" autocomplete="username" required minlength="3">
+          </div>
+          <span class="field-error" id="err-regName"></span>
+        </div>
+
+        <div class="field">
+          <label for="regEmail">Email</label>
+          <div class="input-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <input type="email" id="regEmail" name="email" placeholder="kamu@email.com" autocomplete="email" required>
+          </div>
+          <span class="field-error" id="err-regEmail"></span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="regPassword">Password</label>
+            <div class="input-wrap">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="regPassword" name="password" placeholder="Min. 6 karakter" autocomplete="new-password" required minlength="6">
+              <button type="button" class="toggle-pass" data-target="regPassword" aria-label="Tampilkan password">👁</button>
+            </div>
+            <span class="field-error" id="err-regPassword"></span>
+            <div class="strength" id="strengthBar"><span></span><span></span><span></span><span></span></div>
+          </div>
+          <div class="field">
+            <label for="regConfirm">Konfirmasi</label>
+            <div class="input-wrap">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <input type="password" id="regConfirm" name="confirm" placeholder="Ulangi password" autocomplete="new-password" required>
+            </div>
+            <span class="field-error" id="err-regConfirm"></span>
+          </div>
+        </div>
+
+        <label class="remember agree">
+          <input type="checkbox" id="agreeTerms" checked>
+          <span class="checkmark"></span>
+          <span>Saya setuju dengan <a href="#" class="link">Syarat & Ketentuan</a> dan <a href="#" class="link">Kebijakan Privasi</a></span>
+        </label>
+        <span class="field-error" id="err-agreeTerms"></span>
+
+        <button type="submit" class="btn btn-solid btn-lg full-width" id="registerBtn">
+          <span class="btn-text">Buat Akun</span>
+        </button>
+
+        <p class="switch-text">Sudah punya akun? <button type="button" class="link-btn" data-goto="login">Masuk di sini</button></p>
+      </form>
+
+      <p class="auth-secure">🔒 Data kamu aman & terenkripsi. Kami tidak pernah membagikan email-mu.</p>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast"><span id="toastMsg"></span></div>
+
+<script src="../asset/js/auth.js" defer></script>
+</body>
+</html>
