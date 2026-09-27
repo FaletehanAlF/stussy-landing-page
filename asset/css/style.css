@@ -1190,21 +1190,26 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition:
-    background 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   flex-shrink: 0;
+  cursor: default;
+  opacity: 0.55;
 }
 .add-btn svg {
   width: 14px;
   height: 14px;
+  pointer-events: none;
 }
-.add-btn:hover {
-  background: var(--fg);
-  border-color: var(--fg);
-  color: var(--bg);
-  transform: scale(1.15);
+.add-btn-inert {
+  pointer-events: auto;
+}
+.add-btn-inert:hover,
+.add-btn-inert:focus {
+  background: transparent;
+  border-color: var(--card-border);
+  color: var(--fg);
+  transform: none;
+  outline: none;
+  box-shadow: none;
 }
 
 
@@ -1952,6 +1957,19 @@ textarea {
   padding: 16px 24px;
   font-size: 13px;
   letter-spacing: 0.06em;
+}
+.modal-hint {
+  margin-top: 10px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 0.4s ease 0.4s;
+}
+.product-modal-overlay.active .modal-hint {
+  opacity: 0.8;
 }
 
 
