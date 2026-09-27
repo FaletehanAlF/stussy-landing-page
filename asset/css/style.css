@@ -15,6 +15,7 @@
   --radius: 4px;
   --container: 1200px;
   --nav-h: 64px;
+  --line: rgba(255, 255, 255, 0.12);
 }
 
 *,
@@ -844,7 +845,7 @@ textarea {
 .about {
   padding: 96px 0;
   background: var(--bg-alt);
-  border-top: 1px solid var(--card-border);
+  border-top: 1px solid var(--line);
 }
 .about-inner {
   max-width: 1100px;
@@ -1538,8 +1539,7 @@ textarea {
 .collab-loop {
   overflow: hidden;
   padding: 40px 0 44px;
-  border-top: 1px solid var(--card-border);
-  border-bottom: 1px solid var(--card-border);
+  border-top: 1px solid var(--line);
   background: var(--bg-alt);
 }
 .collab-label {
