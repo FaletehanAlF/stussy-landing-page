@@ -80,11 +80,21 @@
         ? '<span class="product-badge">' + p.badge + '</span>'
         : '';
 
+      var firstLetter = (p.name || '?').charAt(0);
+      var imgHTML = p.img
+        ? '<img class="product-thumb-img" src="' + p.img + '" alt="' + p.name + '" loading="lazy" onerror="this.style.display=\'none\'">'
+        : '';
+      var ratingVal = (typeof p.rating === 'number') ? p.rating : 0;
+      var ratingHTML = ratingVal
+        ? '<div class="product-rating"><span class="rating-stars">' + buildStars(ratingVal) + '</span><span class="rating-num">' + ratingVal.toFixed(1) + ' (' + formatReviews(p.reviews) + ')</span></div>'
+        : '';
+
       card.innerHTML =
         '<div class="product-thumb">' +
           badgeHTML +
           '<div class="product-thumb-inner">' +
-            '<div class="product-thumb-letter">' + p.name.charAt(0) + '</div>' +
+            '<div class="product-thumb-letter">' + firstLetter + '</div>' +
+            imgHTML +
           '</div>' +
         '</div>' +
         '<div class="product-info">' +
@@ -95,6 +105,7 @@
             '</button>' +
           '</div>' +
           '<h3 class="product-name">' + p.name + '</h3>' +
+          ratingHTML +
           '<p class="product-desc">' + p.desc + '</p>' +
           '<div class="product-price">' +
             '<span class="price">' + formatPrice(p.price) + '</span>' +
