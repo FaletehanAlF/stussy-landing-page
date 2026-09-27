@@ -968,6 +968,7 @@ textarea {
 
 .category {
   padding: 72px 0;
+  border-top: 1px solid var(--line);
 }
 .category-grid {
   display: grid;
@@ -1040,6 +1041,7 @@ textarea {
 .produk {
   padding: 72px 0;
   background: var(--bg-alt);
+  border-top: 1px solid var(--line);
 }
 .produk-head {
   display: flex;
@@ -1248,6 +1250,7 @@ textarea {
 
 .review {
   padding: 72px 0;
+  border-top: 1px solid var(--line);
 }
 .review-track {
   display: grid;
@@ -1313,6 +1316,7 @@ textarea {
 .contact {
   padding: 72px 0;
   background: var(--bg-alt);
+  border-top: 1px solid var(--line);
 }
 .contact-header {
   margin-bottom: 48px;
@@ -1493,8 +1497,7 @@ textarea {
 .marquee {
   overflow: hidden;
   padding: 32px 0;
-  border-top: 1px solid var(--card-border);
-  border-bottom: 1px solid var(--card-border);
+  border-top: 1px solid var(--line);
   background: var(--bg);
 }
 .marquee-track {
@@ -1585,6 +1588,7 @@ textarea {
 .footer {
   background: var(--bg);
   padding: 48px 0 0;
+  border-top: 1px solid var(--line);
 }
 .footer-grid {
   display: grid;
