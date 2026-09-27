@@ -43,6 +43,20 @@
     return 'Rp' + Number(n).toLocaleString('id-ID');
   }
 
+  function buildStars(rating) {
+    var full = Math.round(Number(rating) || 0);
+    var s = '';
+    for (var k = 0; k < 5; k++) {
+      s += k < full ? '\u2605' : '\u2606';
+    }
+    return s;
+  }
+
+  function formatReviews(n) {
+    var num = Number(n) || 0;
+    return num.toLocaleString('id-ID');
+  }
+
   function renderProducts(list) {
     var grid = document.getElementById('productGrid');
     if (!grid) return;
