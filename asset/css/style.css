@@ -2134,18 +2134,11 @@ textarea {
     height: 170px;
     top: 115px;
   }
-  .about-grid {
-    grid-template-columns: 1fr;
+  .about {
+    padding: 80px 0;
   }
-  .about-visual {
-    height: 300px;
-    margin: 0 auto;
-    max-width: 500px;
-    width: 100%;
-  }
-  .about-card {
-    width: 220px;
-    height: 220px;
+  .about-media {
+    border-radius: 14px;
   }
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
