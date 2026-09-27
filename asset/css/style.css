@@ -1467,6 +1467,16 @@ textarea {
   border-bottom: 1px solid var(--card-border);
   background: var(--bg-alt);
 }
+.collab-label {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 24px;
+  padding: 0 16px;
+}
 .collab-track {
   display: flex;
   align-items: center;
