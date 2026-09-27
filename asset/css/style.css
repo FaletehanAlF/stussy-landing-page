@@ -2328,19 +2328,28 @@ textarea {
     flex-direction: column;
     align-items: flex-start;
   }
-  .about-visual {
-    height: 220px;
+  .about {
+    padding: 64px 0;
   }
-  .about-card {
-    width: 160px;
-    height: 160px;
+  .about-lead {
+    font-size: 13.5px;
   }
-  .about-card-year {
-    font-size: 24px;
+  .about-media {
+    margin-top: 28px;
+    border-radius: 12px;
+    aspect-ratio: 4 / 3;
   }
   .about-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    margin-top: 28px;
+  }
+  .about-stat {
+    padding: 0 12px;
+  }
+  .about-stat-num {
+    font-size: 24px;
+  }
+  .about-points {
+    margin-top: 28px;
   }
   .contact-info-card {
     padding: 16px;
