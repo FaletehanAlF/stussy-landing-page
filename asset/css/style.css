@@ -1057,6 +1057,7 @@ textarea {
   align-items: center;
   justify-content: center;
   background: linear-gradient(145deg, #141414 0%, #0a0a0a 100%);
+  position: relative;
 }
 .product-thumb-letter {
   font-family: var(--font-display);
@@ -1067,6 +1068,39 @@ textarea {
   transition:
     opacity 0.4s ease,
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.product-thumb-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(20%);
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.4s ease;
+}
+.product-card:hover .product-thumb-img {
+  transform: scale(1.06);
+  filter: grayscale(0%);
+}
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0 8px;
+}
+.rating-stars {
+  color: var(--fg);
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.rating-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
 }
 .product-card:hover .product-thumb-letter {
   opacity: 0.14;
