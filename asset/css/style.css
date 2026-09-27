@@ -2213,12 +2213,6 @@ textarea {
   .about-stat:nth-child(3) {
     border-left: none;
   }
-  .about-points {
-    grid-template-columns: 1fr;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-  }
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -2361,9 +2355,6 @@ textarea {
   }
   .about-stat-num {
     font-size: 24px;
-  }
-  .about-points {
-    margin-top: 28px;
   }
   .contact-info-card {
     padding: 16px;
