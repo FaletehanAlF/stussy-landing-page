@@ -2190,7 +2190,21 @@ textarea {
     grid-template-columns: 1fr 1fr;
   }
   .about-stats {
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+    gap: 20px 0;
+  }
+  .about-stat {
+    flex: 1 1 40%;
+    padding: 0 16px;
+  }
+  .about-stat:nth-child(3) {
+    border-left: none;
+  }
+  .about-points {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .contact-grid {
     grid-template-columns: 1fr;
