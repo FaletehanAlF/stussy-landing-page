@@ -2138,6 +2138,10 @@ textarea {
   .collab-loop {
     padding: 28px 0 32px;
   }
+  .collab-label {
+    margin-bottom: 18px;
+    font-size: 11px;
+  }
   .collab-set {
     gap: 40px;
     padding-right: 40px;
