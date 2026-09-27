@@ -248,6 +248,7 @@
       sizesEl.innerHTML = '';
       SIZES.forEach(function (s, i) {
         var btn = document.createElement('button');
+        btn.type = 'button';
         btn.className = 'modal-size-btn' + (i === 1 ? ' active' : '');
         btn.textContent = s;
         btn.addEventListener('click', function () {
@@ -257,6 +258,10 @@
         sizesEl.appendChild(btn);
       });
     }
+
+    // Reset posisi scroll detail agar tiap produk selalu mulai dari atas (clean UX).
+    var detailEl = overlay.querySelector('.modal-detail');
+    if (detailEl) detailEl.scrollTop = 0;
 
     document.body.style.overflow = 'hidden';
     overlay.classList.add('active');
