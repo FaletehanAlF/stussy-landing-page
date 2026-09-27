@@ -557,43 +557,7 @@ textarea {
 .hero-meta-star {
   color: #fff;
 }
-.hero-scroll {
-  position: absolute;
-  bottom: 26px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-  width: 26px;
-  height: 42px;
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
-  border-radius: 999px;
-  display: flex;
-  justify-content: center;
-  padding-top: 8px;
-  opacity: 0;
-  animation: fadeIn 0.8s ease 1.2s forwards;
-}
-.hero-scroll span {
-  width: 3px;
-  height: 8px;
-  border-radius: 999px;
-  background: #fff;
-  animation: heroWheel 1.8s ease infinite;
-}
-@keyframes heroWheel {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  70% {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(0);
-  }
-}
+
 
 
 .hero-social-proof {
