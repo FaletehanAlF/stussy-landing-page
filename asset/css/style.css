@@ -2270,7 +2270,7 @@ textarea {
     height: 28px;
   }
   .navbar {
-    padding: 8px 12px;
+    padding: 0 12px;
   }
   .nav-inner {
     padding: 6px 14px 6px 18px;
@@ -2282,45 +2282,35 @@ textarea {
   .mobile-menu {
     width: calc(100% - 24px);
   }
+  .hero {
+    padding: calc(var(--nav-h) + 28px) 0 76px;
+    min-height: 92svh;
+  }
   .hero-inner {
-    padding: 60px 16px 48px;
+    padding: 0 16px;
   }
   .hero-title {
-    font-size: clamp(36px, 12vw, 64px);
+    font-size: clamp(52px, 17vw, 84px);
   }
   .hero-sub {
-    font-size: 13px;
+    font-size: 13.5px;
+    margin-bottom: 26px;
   }
   .hero-cta {
     flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 320px;
   }
   .hero-cta .btn {
     width: 100%;
     justify-content: center;
   }
-  .hero-highlights {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+  .hero-meta {
+    font-size: 10.5px;
   }
-  .hero-highlight-item {
-    padding: 0;
-    flex-direction: row;
-    gap: 12px;
-  }
-  .hero-highlight-divider {
-    width: 40px;
-    height: 1px;
-  }
-  .hero-social-proof {
-    width: 100%;
-    justify-content: center;
-  }
-  .hero-sp-count {
-    font-size: 10px;
-  }
-  .hero-product-scene {
-    height: 320px;
+  .hero-scroll {
+    display: none;
   }
   .hero-pcard-1 {
     width: 140px;
