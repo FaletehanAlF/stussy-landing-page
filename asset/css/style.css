@@ -1151,8 +1151,12 @@ textarea {
   font-size: 11.5px;
   color: var(--muted);
   margin-bottom: 12px;
-  min-height: 28px;
-  line-height: 1.4;
+  min-height: 48px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .product-price {
   display: flex;
@@ -1721,6 +1725,8 @@ textarea {
   align-items: center;
   justify-content: center;
   background: linear-gradient(145deg, #141414 0%, #0a0a0a 100%);
+  position: relative;
+  overflow: hidden;
 }
 .modal-thumb-letter {
   font-family: var(--font-display);
@@ -1730,6 +1736,27 @@ textarea {
   opacity: 0.06;
   line-height: 1;
   transition: opacity 0.5s ease;
+}
+.modal-thumb-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.modal-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: -8px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease 0.18s, transform 0.4s ease 0.18s;
+}
+.product-modal-overlay.active .modal-rating {
+  opacity: 1;
+  transform: translateY(0);
 }
 .product-modal-overlay.active .modal-thumb-letter {
   opacity: 0.1;
