@@ -5,14 +5,14 @@
 
   
   var PRODUCTS = [
-    { id: 'p01', name: '8-Ball Tee',     cat: 'tees',      price: 449000,  badge: 'NEW',          desc: 'Katun 240gsm, sablon puff signature bola 8.' },
-    { id: 'p02', name: 'Stock Hoodie',   cat: 'hoodies',   price: 899000,  badge: 'BEST SELLER',  desc: 'Fleece 380gsm brushed, box logo bordir dada.' },
-    { id: 'p03', name: 'World Tour Cap', cat: 'headwear',  price: 359000,  badge: '',             desc: '6-panel twill, strapback logam anti karat.' },
-    { id: 'p04', name: 'Script Tee',     cat: 'tees',      price: 399000,  badge: '',             desc: 'Signature script di dada, potongan boxy fit.' },
-    { id: 'p05', name: 'Work Jacket',    cat: 'outerwear', price: 1249000, badge: 'LIMITED',      desc: 'Canvas 12oz, lapisan flannel, kancing logam.' },
-    { id: 'p06', name: 'Half Zip Mock',  cat: 'hoodies',   price: 799000,  badge: '',             desc: 'Rib collar, zipper YKK, cocok layering.' },
-    { id: 'p07', name: 'Chain Stitch Beanie', cat: 'headwear', price: 259000, badge: 'NEW',      desc: 'Rajut akrilik tebal, label chain-stitch.' },
-    { id: 'p08', name: 'Tool Bag Crossbody', cat: 'accessories', price: 549000, badge: '',       desc: 'Cordura 1000D, strap adjustable, water resist.' }
+    { id: 'p01', name: '8 Ball Pigment Dyed Tee', cat: 'tees', price: 749000, badge: 'BEST SELLER', rating: 4.9, reviews: 2314, img: 'https://www.stussy.com/cdn/shop/files/1905022_FBLA_1.jpg?v=1773353775&width=600', desc: 'Tee katun heavyweight pigment-dyed dengan grafis 8-Ball ikonik di punggung. Potongan relaxed, rib leher awet.' },
+    { id: 'p02', name: 'Basic Stussy Hoodie', cat: 'hoodies', price: 2099000, badge: 'BEST SELLER', rating: 4.9, reviews: 1876, img: 'https://www.stussy.com/cdn/shop/files/1925000_BLAC_1.jpg?v=1785178412&width=600', desc: 'Hoodie fleece 400gsm dengan logo Basic Stussy bordir dada, saku kanguru, hood dua lapis yang hangat.' },
+    { id: 'p03', name: '9TWENTY Basic Cap', cat: 'headwear', price: 829000, badge: '', rating: 4.8, reviews: 1240, img: 'https://www.stussy.com/cdn/shop/files/1311107_BLAC_1_5fdb7b18-8307-4b7e-b37f-169a789f23ee.jpg?v=1785176192&width=600', desc: 'Kolaborasi New Era x Stussy. 6-panel twill katun unstructured, bordir logo timbul, strapback adjustable.' },
+    { id: 'p04', name: 'Fresh Foils Pigment Dyed Tee', cat: 'tees', price: 749000, badge: 'NEW', rating: 4.7, reviews: 864, img: 'https://www.stussy.com/cdn/shop/files/1905216_FBLA_1.jpg?v=1788898820&width=600', desc: 'Tee garment pigment-dyed Faded Black dengan foil print Fresh Foils. Fit boxy modern, adem untuk harian.' },
+    { id: 'p05', name: 'Rally Insulated Jacket', cat: 'outerwear', price: 3899000, badge: 'LIMITED', rating: 4.9, reviews: 512, img: 'https://www.stussy.com/cdn/shop/files/115961_BLAC_1.jpg?v=1789493327&width=600', desc: 'Jaket insulated tahan angin bahan ripstop nylon, quilting diamond, saku utility, bordir stock logo dada.' },
+    { id: 'p06', name: 'Block Sport Hoodie', cat: 'hoodies', price: 2149000, badge: '', rating: 4.8, reviews: 973, img: 'https://www.stussy.com/cdn/shop/files/1925217_FBLA_1.jpg?v=1787082931&width=600', desc: 'Hoodie garment-dyed 380gsm brushed fleece dengan grafis Block Sport. Rib tebal, potongan sedikit oversize.' },
+    { id: 'p07', name: 'Basic Stussy Cuff Beanie', cat: 'headwear', price: 729000, badge: 'NEW', rating: 4.7, reviews: 689, img: 'https://www.stussy.com/cdn/shop/files/1321262_BLAC_1.jpg?v=1785176552&width=600', desc: 'Beanie rajut rib akrilik lembut dengan cuff lipat dan woven label Basic Stussy. Hangat dan tidak gatal.' },
+    { id: 'p08', name: 'Canvas Crossbody Bag', cat: 'accessories', price: 979000, badge: '', rating: 4.8, reviews: 1105, img: 'https://www.stussy.com/cdn/shop/files/134264_BLAC_1.jpg?v=1781816325&width=600', desc: 'Tas selempang kanvas 12oz water-resistant, strap adjustable, saku zip dalam, print stock logo putih.' }
   ];
 
   
