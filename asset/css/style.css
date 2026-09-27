@@ -1616,11 +1616,12 @@ textarea {
   line-height: 1;
 }
 .footer-logo .logo-word {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 24px;
-  letter-spacing: 0.08em;
+  font-family: var(--font-graffiti);
+  font-weight: 400;
+  font-size: 26px;
+  letter-spacing: 0.04em;
   color: var(--fg);
+  transform: rotate(-2deg);
 }
 .footer-tag {
   color: var(--muted);
