@@ -198,6 +198,8 @@
     if (!product) return;
 
     var letter = document.getElementById('modalLetter');
+    var modalImg = document.getElementById('modalImg');
+    var modalRating = document.getElementById('modalRating');
     var badge = document.getElementById('modalBadge');
     var cat = document.getElementById('modalCat');
     var name = document.getElementById('modalName');
@@ -206,7 +208,26 @@
     var status = document.getElementById('modalStatus');
     var sizesEl = document.getElementById('modalSizes');
 
-    if (letter) letter.textContent = product.name.charAt(0);
+    if (letter) letter.textContent = (product.name || '?').charAt(0);
+    if (modalImg) {
+      if (product.img) {
+        modalImg.style.display = '';
+        modalImg.src = product.img;
+        modalImg.alt = product.name || 'Produk Stussy';
+      } else {
+        modalImg.removeAttribute('src');
+        modalImg.style.display = 'none';
+      }
+    }
+    if (modalRating) {
+      if (typeof product.rating === 'number') {
+        modalRating.innerHTML = '<span class="rating-stars">' + buildStars(product.rating) + '</span><span class="rating-num">' + product.rating.toFixed(1) + ' (' + formatReviews(product.reviews) + ' ulasan)</span>';
+        modalRating.style.display = '';
+      } else {
+        modalRating.innerHTML = '';
+        modalRating.style.display = 'none';
+      }
+    }
     if (badge) {
       badge.textContent = product.badge || '';
       badge.style.display = product.badge ? 'block' : 'none';
