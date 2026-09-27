@@ -100,7 +100,7 @@
         '<div class="product-info">' +
           '<div class="product-info-top">' +
             '<span class="product-cat">' + p.cat + '</span>' +
-            '<button class="add-btn" aria-label="Tambah ' + p.name + '" data-add="' + p.id + '">' +
+            '<button type="button" class="add-btn add-btn-inert" aria-hidden="true" tabindex="-1" data-add="' + p.id + '">' +
               '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>' +
             '</button>' +
           '</div>' +
@@ -149,13 +149,20 @@
 
   
   function bindAddToCart() {
+    // Icon plus sengaja dibuat inert: diklik tidak terjadi apa-apa.
+    // Hanya cegah bubble agar popup detail tidak ikut terbuka.
     var buttons = document.querySelectorAll('[data-add]');
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function (e) {
+        e.preventDefault();
         e.stopPropagation();
-        btn.style.transform = 'scale(1.4)';
-        setTimeout(function () { btn.style.transform = ''; }, 250);
-        showToast('Ditambahkan ke keranjang');
+      });
+      btn.addEventListener('keydown', function (e) {
+        // Cegah aktivasi via keyboard (Enter/Space) agar benar-benar tidak terjadi apa-apa.
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          e.stopPropagation();
+        }
       });
     });
   }
