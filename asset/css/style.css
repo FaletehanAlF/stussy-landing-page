@@ -2127,23 +2127,14 @@ textarea {
 
 
 @media (max-width: 1024px) {
-  .hero-inner {
-    grid-template-columns: 1fr;
-    text-align: center;
-    min-height: auto;
-    padding: 80px 24px 60px;
+  .hero {
+    padding: calc(var(--nav-h) + 40px) 0 80px;
   }
-  .hero-content {
-    align-items: center;
+  .hero-inner {
+    padding: 0 24px;
   }
   .hero-sub {
-    max-width: 100%;
-  }
-  .hero-cta {
-    justify-content: center;
-  }
-  .hero-highlights {
-    justify-content: center;
+    max-width: 520px;
   }
   .hero-product-scene {
     height: 400px;
