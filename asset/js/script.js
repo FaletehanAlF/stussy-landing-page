@@ -17,6 +17,7 @@
 
   
   document.addEventListener('DOMContentLoaded', function () {
+    initTheme();
     renderProducts(PRODUCTS);
     initNavbar();
     initMobileMenu();
