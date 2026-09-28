@@ -121,6 +121,11 @@ body {
     radial-gradient(600px 400px at 15% 10%, rgba(255,255,255,0.06), transparent 70%),
     radial-gradient(700px 500px at 90% 90%, rgba(255,255,255,0.05), transparent 70%);
 }
+:root[data-theme="light"] .auth-bg-grain {
+  background:
+    radial-gradient(600px 400px at 15% 10%, rgba(0,0,0,0.05), transparent 70%),
+    radial-gradient(700px 500px at 90% 90%, rgba(0,0,0,0.04), transparent 70%);
+}
 
 /* topbar — ramping */
 .auth-topbar {
@@ -148,11 +153,11 @@ body {
   border-radius: 999px;
   text-decoration: none;
   transition: all .25s ease;
-  background: rgba(255,255,255,0.02);
+  background: rgba(127, 127, 127, 0.08);
 }
 .auth-back:hover {
-  color: #fff;
-  border-color: #fff;
+  color: var(--fg);
+  border-color: var(--fg);
   transform: translateY(-1px);
 }
 .auth-mini-logo img {
@@ -178,13 +183,16 @@ body {
   max-width: 860px;
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
-  background: rgba(17,17,17,0.85);
-  backdrop-filter: blur(18px);
-  border: 1px solid #232323;
+  background: var(--card);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.02) inset;
   animation: rise .6s cubic-bezier(.16,1,.3,1);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+:root[data-theme="light"] .auth-card {
+  box-shadow: 0 30px 80px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.03) inset;
 }
 @keyframes rise {
   from { opacity: 0; transform: translateY(24px) scale(.99); }
@@ -221,6 +229,8 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   gap: 10px;
+  /* Panel foto selalu gelap (overlay hitam) di kedua tema -> teks tetap putih */
+  color: #fff;
 }
 .auth-eyebrow {
   font-family: var(--font-mono);
@@ -249,10 +259,11 @@ body {
 /* right form — compact tapi tetap lega */
 .auth-form-side {
   padding: 34px 36px;
-  background: #0b0b0b;
+  background: var(--bg-alt);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition: background-color 0.35s ease;
 }
 .auth-form-head {
   margin-bottom: 4px;
@@ -276,11 +287,12 @@ body {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background: #141414;
-  border: 1px solid #222;
+  background: var(--card);
+  border: 1px solid var(--card-border);
   border-radius: 999px;
   padding: 4px;
   margin: 20px 0 22px;
+  transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 .auth-tab {
   position: relative;
@@ -297,16 +309,16 @@ body {
   cursor: pointer;
   transition: color .25s ease;
 }
-.auth-tab.active { color: #000; font-weight: 500; }
+.auth-tab.active { color: var(--bg); font-weight: 500; }
 .auth-tab-indicator {
   position: absolute;
   top: 4px;
   left: 4px;
   width: calc(50% - 4px);
   height: calc(100% - 8px);
-  background: #fff;
+  background: var(--fg);
   border-radius: 999px;
-  transition: transform .35s cubic-bezier(.16,1,.3,1);
+  transition: transform .35s cubic-bezier(.16,1,.3,1), background-color .35s ease;
 }
 .auth-tabs.register .auth-tab-indicator { transform: translateX(100%); }
 
@@ -331,29 +343,29 @@ body {
   align-items: center;
   gap: 10px;
   background: var(--input-bg);
-  border: 1px solid #232323;
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-sm);
   padding: 0 14px;
-  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  transition: border-color .2s ease, box-shadow .2s ease, background-color .35s ease;
 }
 .input-wrap:focus-within {
-  border-color: #fff;
-  box-shadow: 0 0 0 3px rgba(255,255,255,0.08);
-  background: #101010;
+  border-color: var(--fg);
+  box-shadow: 0 0 0 3px rgba(127,127,127,0.18);
+  background: var(--input-bg);
 }
-.input-wrap svg { color: #777; flex-shrink: 0; }
+.input-wrap svg { color: var(--muted); flex-shrink: 0; }
 .input-wrap input {
   flex: 1;
   background: transparent;
   border: none;
   outline: none;
-  color: #fff;
+  color: var(--fg);
   font-family: var(--font-body);
   font-size: 14px;
   padding: 12px 0;
   min-width: 0;
 }
-.input-wrap input::placeholder { color: #555; }
+.input-wrap input::placeholder { color: var(--muted); }
 .toggle-pass {
   background: transparent;
   border: none;
@@ -362,6 +374,7 @@ body {
   opacity: 0.7;
   transition: opacity .2s;
   padding: 4px;
+  color: var(--muted);
 }
 .toggle-pass:hover { opacity: 1; }
 
@@ -386,7 +399,7 @@ body {
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  color: #c5c5c5;
+  color: var(--muted-2);
   font-family: var(--font-body) !important;
   font-size: 13px !important;
   text-transform: none !important;
@@ -398,8 +411,8 @@ body {
   width: 16px;
   height: 16px;
   border-radius: 6px;
-  border: 1px solid #333;
-  background: #141414;
+  border: 1px solid var(--card-border);
+  background: var(--card);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -408,15 +421,15 @@ body {
   flex-shrink: 0;
 }
 .remember input:checked + .checkmark {
-  background: #fff;
-  border-color: #fff;
-  color: #000;
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
 }
 .remember input:checked + .checkmark::after { content: "✓"; font-weight: 700; }
 .remember.agree { align-items: flex-start; line-height: 1.5; }
 
 .link, .link-btn {
-  color: #fff;
+  color: var(--fg);
   text-decoration: underline;
   text-underline-offset: 3px;
   font-size: 13px;
@@ -424,8 +437,9 @@ body {
   border: none;
   cursor: pointer;
   font-family: inherit;
+  transition: color .2s ease;
 }
-.link:hover, .link-btn:hover { color: #ddd; }
+.link:hover, .link-btn:hover { color: var(--muted); }
 
 /* buttons — samakan dengan style.css */
 .btn {
@@ -447,11 +461,11 @@ body {
   border: none;
   cursor: pointer;
 }
-.btn-solid { background: #fff; color: #000; }
-.btn-solid:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.15); }
+.btn-solid { background: var(--fg); color: var(--bg); }
+.btn-solid:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(127,127,127,0.35); }
 .btn-solid:active { transform: translateY(0) scale(.97); }
-.btn-ghost { background: transparent; color: #fff; border: 1px solid #2a2a2a; }
-.btn-ghost:hover { border-color: #fff; transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--fg); border: 1px solid var(--card-border); }
+.btn-ghost:hover { border-color: var(--fg); transform: translateY(-2px); }
 .btn-lg { padding: 13px 26px; font-size: 12px; }
 .full-width { width: 100%; margin-top: 2px; }
 .btn.loading { pointer-events: none; opacity: .8; }
@@ -462,14 +476,10 @@ body {
   height: 14px;
   margin-left: 10px;
   vertical-align: -2px;
-  border: 2px solid rgba(0,0,0,0.25);
-  border-top-color: #000;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
   border-radius: 50%;
   animation: spin .7s linear infinite;
-}
-.btn-ghost.loading .btn-text::after {
-  border-color: rgba(255,255,255,0.25);
-  border-top-color: #fff;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -487,21 +497,21 @@ body {
   bottom: 28px;
   left: 50%;
   transform: translate(-50%, 100px);
-  background: #fff;
-  color: #000;
+  background: var(--fg);
+  color: var(--bg);
   font-size: 13.5px;
   font-weight: 500;
   padding: 13px 22px;
   border-radius: 999px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
   opacity: 0;
-  transition: all .4s cubic-bezier(.16,1,.3,1);
+  transition: all .4s cubic-bezier(.16,1,.3,1), background-color .35s ease, color .35s ease;
   z-index: 99;
   max-width: calc(100vw - 48px);
   text-align: center;
 }
 .toast.show { transform: translate(-50%, 0); opacity: 1; }
-.toast.error { background: #ff5c5c; color: #fff; }
+.toast.error { background: var(--error); color: #fff; }
 
 /* layar pendek (laptop 100% zoom) — padatkan lagi */
 @media (max-height: 800px) and (min-width: 861px) {

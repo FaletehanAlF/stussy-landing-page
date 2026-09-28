@@ -1,5 +1,69 @@
 // STUSSY Auth — login & register (frontend only, localStorage)
 (function () {
+  'use strict';
+
+  /* ===== Tema light/dark — key SAMA dengan landing page agar sinkron ===== */
+  var THEME_KEY = 'stussy-theme';
+
+  function getSystemTheme() {
+    try {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+    } catch (e) { /* abaikan, fallback ke dark */ }
+    return 'dark';
+  }
+
+  function getSavedTheme() {
+    try {
+      var saved = localStorage.getItem(THEME_KEY);
+      if (saved === 'light' || saved === 'dark') return saved;
+    } catch (e) { /* localStorage tidak tersedia */ }
+    return null;
+  }
+
+  function applyTheme(theme) {
+    var next = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { document.documentElement.style.colorScheme = next; } catch (e) {}
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+
+    var btn = document.getElementById('themeToggle');
+    if (btn) {
+      var label = next === 'light' ? 'Ubah ke dark mode' : 'Ubah ke light mode';
+      btn.setAttribute('aria-label', label);
+      btn.setAttribute('title', label);
+      btn.setAttribute('aria-pressed', String(next === 'light'));
+    }
+  }
+
+  function initTheme() {
+    var current = document.documentElement.getAttribute('data-theme');
+    if (current !== 'light' && current !== 'dark') {
+      current = getSavedTheme() || getSystemTheme();
+    }
+    applyTheme(current);
+
+    var btn = document.getElementById('themeToggle');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var now = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        applyTheme(now);
+      });
+    }
+
+    // Ikuti tema sistem hanya bila pengguna belum pernah memilih manual.
+    try {
+      var mq = window.matchMedia('(prefers-color-scheme: light)');
+      var onSystemChange = function (e) {
+        if (getSavedTheme()) return;
+        applyTheme(e.matches ? 'light' : 'dark');
+      };
+      if (mq && typeof mq.addEventListener === 'function') mq.addEventListener('change', onSystemChange);
+      else if (mq && typeof mq.addListener === 'function') mq.addListener(onSystemChange);
+    } catch (e) {}
+  }
+
+  initTheme();
+
   const tabLogin = document.getElementById('tabLogin');
   const tabRegister = document.getElementById('tabRegister');
   const tabsWrap = document.querySelector('.auth-tabs');
