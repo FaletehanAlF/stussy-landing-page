@@ -11,6 +11,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Permanent+Marker&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="asset/css/style.css">
+<script>
+/* Anti-FOUC: terapkan tema tersimpan sebelum CSS render agar tidak kedip */
+(function () {
+  try {
+    var saved = localStorage.getItem('stussy-theme');
+    var theme = saved === 'light' || saved === 'dark'
+      ? saved
+      : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.style.colorScheme = theme;
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
 </head>
 <body>
 
