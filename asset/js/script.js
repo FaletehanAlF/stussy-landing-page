@@ -44,6 +44,74 @@
     return 'Rp' + Number(n).toLocaleString('id-ID');
   }
 
+  /* ===== Light / Dark mode toggle (bulan & matahari) ===== */
+  var THEME_KEY = 'stussy-theme';
+
+  function getSystemTheme() {
+    try {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+    } catch (e) { /* abaikan, fallback ke dark */ }
+    return 'dark';
+  }
+
+  function getSavedTheme() {
+    try {
+      var saved = localStorage.getItem(THEME_KEY);
+      if (saved === 'light' || saved === 'dark') return saved;
+    } catch (e) { /* localStorage tidak tersedia (mode privat) */ }
+    return null;
+  }
+
+  function applyTheme(theme) {
+    var next = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { document.documentElement.style.colorScheme = next; } catch (e) {}
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+
+    var isLight = next === 'light';
+    var label = isLight ? 'Ubah ke dark mode' : 'Ubah ke light mode';
+    [['themeToggle'], ['themeToggleMobile']].forEach(function (ids) {
+      var btn = document.getElementById(ids[0]);
+      if (!btn) return;
+      btn.setAttribute('aria-label', label);
+      btn.setAttribute('title', label);
+      btn.setAttribute('aria-pressed', String(isLight));
+    });
+  }
+
+  function initTheme() {
+    // Samakan dengan tema yang sudah dipasang anti-FOUC di <head>, atau hitung ulang bila belum ada.
+    var current = document.documentElement.getAttribute('data-theme');
+    if (current !== 'light' && current !== 'dark') {
+      current = getSavedTheme() || getSystemTheme();
+    }
+    applyTheme(current);
+
+    function toggleTheme() {
+      var now = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(now);
+    }
+
+    var desktopBtn = document.getElementById('themeToggle');
+    var mobileBtn = document.getElementById('themeToggleMobile');
+    if (desktopBtn) desktopBtn.addEventListener('click', toggleTheme);
+    if (mobileBtn) mobileBtn.addEventListener('click', function () {
+      toggleTheme();
+      // Biarkan menu tetap terbuka agar pengguna bisa melihat perubahan tema langsung.
+    });
+
+    // Ikuti perubahan tema sistem hanya bila pengguna belum pernah memilih manual.
+    try {
+      var mq = window.matchMedia('(prefers-color-scheme: light)');
+      var onSystemChange = function (e) {
+        if (getSavedTheme()) return;
+        applyTheme(e.matches ? 'light' : 'dark');
+      };
+      if (mq && typeof mq.addEventListener === 'function') mq.addEventListener('change', onSystemChange);
+      else if (mq && typeof mq.addListener === 'function') mq.addListener(onSystemChange);
+    } catch (e) {}
+  }
+
   function buildStars(rating) {
     var full = Math.round(Number(rating) || 0);
     var s = '';
