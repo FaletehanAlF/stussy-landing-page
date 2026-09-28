@@ -1,4 +1,5 @@
 :root {
+  color-scheme: dark;
   --bg: #000;
   --bg-alt: #0a0a0a;
   --card: #111;
@@ -9,12 +10,72 @@
   --input-bg: #0d0d0d;
   --error: #ff5c5c;
   --success: #4ade80;
+  --bg-word-stroke: rgba(255, 255, 255, 0.07);
   --font-display: "Big Shoulders Display", sans-serif;
   --font-body: "Space Grotesk", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
   --font-graffiti: "Permanent Marker", cursive;
   --radius: 16px;
   --radius-sm: 10px;
+}
+
+/* ===== Light mode — selaras dengan landing page (dark tetap default) ===== */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f4f2ed;
+  --bg-alt: #ffffff;
+  --card: #ffffff;
+  --card-border: #e4dfd6;
+  --fg: #141414;
+  --muted: #6f6a61;
+  --muted-2: #57534a;
+  --input-bg: #f8f6f1;
+  --error: #d92d20;
+  --success: #12805c;
+  --bg-word-stroke: rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Theme toggle (bulan / matahari) — sama seperti landing ===== */
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.3s ease;
+}
+.theme-toggle:hover {
+  border-color: var(--fg);
+  background: rgba(127, 127, 127, 0.12);
+  transform: translateY(-2px) rotate(8deg);
+}
+.theme-toggle:active {
+  transform: translateY(0) scale(0.94);
+}
+/* Dark mode (default): tampilkan matahari -> klik untuk ke light */
+.theme-toggle .theme-icon-moon {
+  display: none;
+}
+:root[data-theme="light"] .theme-toggle .theme-icon-sun {
+  display: none;
+}
+:root[data-theme="light"] .theme-toggle .theme-icon-moon {
+  display: block;
+}
+.auth-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,6 +89,7 @@ body {
   flex-direction: column;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 /* background giant text */
@@ -48,7 +110,7 @@ body {
   font-size: clamp(100px, 18vw, 260px);
   letter-spacing: 0.02em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.07);
+  -webkit-text-stroke: 1px var(--bg-word-stroke);
   white-space: nowrap;
   user-select: none;
 }
