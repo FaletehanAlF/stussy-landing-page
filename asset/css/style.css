@@ -422,6 +422,10 @@ textarea {
 .hero-cta .btn {
   border-radius: 50px;
 }
+.hero-cta .btn svg {
+  width: 14px;
+  height: 14px;
+}
 .full-width {
   width: 100%;
   justify-content: center;
