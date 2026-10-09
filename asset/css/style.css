@@ -419,6 +419,9 @@ textarea {
   padding: 14px 26px;
   font-size: 13px;
 }
+.hero-cta .btn {
+  border-radius: 50px;
+}
 .full-width {
   width: 100%;
   justify-content: center;
