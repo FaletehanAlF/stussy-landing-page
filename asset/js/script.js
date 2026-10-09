@@ -76,6 +76,29 @@
     updateThemeButtons(next);
   }
 
+  /* Crossfade foto hero saat ganti tema: pastikan kedua foto sudah ter-decode
+     (tidak setengah-loading/kedip) + kunci sebagai compositor layer hanya
+     selama animasi agar opacity jalan di GPU 60fps tanpa lag/patah. */
+  var heroXfTimer = null;
+  function smoothHeroSwap() {
+    var heroBg = document.querySelector('.hero-bg');
+    if (!heroBg) return;
+    try {
+      var imgs = heroBg.querySelectorAll('img');
+      for (var i = 0; i < imgs.length; i++) {
+        if (imgs[i] && typeof imgs[i].decode === 'function') {
+          try { imgs[i].decode().catch(function () {}); } catch (e) {}
+        }
+      }
+    } catch (e) {}
+    heroBg.classList.add('is-crossfading');
+    if (heroXfTimer) clearTimeout(heroXfTimer);
+    heroXfTimer = setTimeout(function () {
+      heroBg.classList.remove('is-crossfading');
+      heroXfTimer = null;
+    }, 700); // sedikit lebih lama dari transisi CSS 0.6s
+  }
+
   function updateThemeButtons(next) {
     var isLight = next === 'light';
     var label = isLight ? 'Ubah ke dark mode' : 'Ubah ke light mode';
