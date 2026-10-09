@@ -216,6 +216,11 @@
   opacity: 1;
   filter: brightness(0) grayscale(0%);
 }
+/* Section category & review tetap putih (bukan abu-abu) di light mode */
+:root[data-theme="light"] .category,
+:root[data-theme="light"] .review {
+  background: var(--bg-alt);
+}
 /* Hero & marquee bawah hero selalu gelap agar teks putih di atas foto tetap terbaca */
 :root[data-theme="light"] .hero {
   background: #000;
@@ -2699,7 +2704,7 @@ body,
     padding: 6px 14px 6px 18px;
     gap: 12px;
   }
-  .nav-logo-img {
+  .nav-logo-svg {
     height: 28px;
   }
   .mobile-menu {
