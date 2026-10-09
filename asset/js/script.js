@@ -62,12 +62,17 @@
     return null;
   }
 
-  function applyTheme(theme) {
+  function applyTheme(theme, persist) {
     var next = theme === 'light' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     try { document.documentElement.style.colorScheme = next; } catch (e) {}
-    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    if (persist !== false) {
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    }
+    updateThemeButtons(next);
+  }
 
+  function updateThemeButtons(next) {
     var isLight = next === 'light';
     var label = isLight ? 'Ubah ke dark mode' : 'Ubah ke light mode';
     [['themeToggle'], ['themeToggleMobile']].forEach(function (ids) {
@@ -85,7 +90,8 @@
     if (current !== 'light' && current !== 'dark') {
       current = getSavedTheme() || getSystemTheme();
     }
-    applyTheme(current);
+    // Tema awal tidak langsung disimpan agar tema sistem tetap diikuti sampai pengguna memilih manual.
+    applyTheme(current, false);
 
     function toggleTheme() {
       var now = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
@@ -105,11 +111,33 @@
       var mq = window.matchMedia('(prefers-color-scheme: light)');
       var onSystemChange = function (e) {
         if (getSavedTheme()) return;
-        applyTheme(e.matches ? 'light' : 'dark');
+        applyTheme(e.matches ? 'light' : 'dark', false);
       };
       if (mq && typeof mq.addEventListener === 'function') mq.addEventListener('change', onSystemChange);
       else if (mq && typeof mq.addListener === 'function') mq.addListener(onSystemChange);
     } catch (e) {}
+
+    // Tema diubah dari tab/halaman lain (mis. landing <-> login/register) -> ikuti langsung.
+    window.addEventListener('storage', function (e) {
+      if (e.key === THEME_KEY && (e.newValue === 'light' || e.newValue === 'dark')) {
+        applyTheme(e.newValue, false);
+      }
+    });
+
+    // Cadangan: saat halaman ini dibuka lagi / tab kembali aktif, samakan dengan tema tersimpan.
+    window.addEventListener('focus', function () {
+      var saved = getSavedTheme();
+      if (saved && saved !== document.documentElement.getAttribute('data-theme')) {
+        applyTheme(saved, false);
+      }
+    });
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) return;
+      var saved = getSavedTheme();
+      if (saved && saved !== document.documentElement.getAttribute('data-theme')) {
+        applyTheme(saved, false);
+      }
+    });
   }
 
   function buildStars(rating) {
@@ -433,7 +461,8 @@
       btn.setAttribute('aria-expanded', String(isOpen));
     });
 
-    menu.querySelectorAll('.mobile-link').forEach(function (link) {
+    // Tombol tema sengaja tidak menutup menu supaya perubahan tema terlihat langsung.
+    menu.querySelectorAll('.mobile-link:not(.mobile-theme)').forEach(function (link) {
       link.addEventListener('click', closeMenu);
     });
 
@@ -678,10 +707,10 @@
       e.preventDefault();
       var input = form.querySelector('input[type="email"]');
       if (!input.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-        if (msg) { msg.style.color = '#fff'; msg.textContent = 'Masukkan email yang valid.'; }
+        if (msg) { msg.style.color = 'var(--error)'; msg.textContent = 'Masukkan email yang valid.'; }
         return;
       }
-      if (msg) { msg.style.color = '#fff'; msg.textContent = 'Terima kasih! Kamu sudah terdaftar.'; }
+      if (msg) { msg.style.color = 'var(--success)'; msg.textContent = 'Terima kasih! Kamu sudah terdaftar.'; }
       form.reset();
     });
   }

@@ -160,13 +160,6 @@ body {
   border-color: var(--fg);
   transform: translateY(-1px);
 }
-.auth-mini-logo img {
-  width: 36px;
-  height: 36px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 1px solid var(--card-border);
-}
 
 /* layout — proporsional 100% zoom */
 .auth-wrap {

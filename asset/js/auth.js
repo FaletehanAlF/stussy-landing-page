@@ -20,11 +20,13 @@
     return null;
   }
 
-  function applyTheme(theme) {
+  function applyTheme(theme, persist) {
     var next = theme === 'light' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     try { document.documentElement.style.colorScheme = next; } catch (e) {}
-    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    if (persist !== false) {
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    }
 
     var btn = document.getElementById('themeToggle');
     if (btn) {
@@ -40,7 +42,8 @@
     if (current !== 'light' && current !== 'dark') {
       current = getSavedTheme() || getSystemTheme();
     }
-    applyTheme(current);
+    // Tema awal tidak langsung disimpan agar tema sistem tetap diikuti sampai pengguna memilih manual.
+    applyTheme(current, false);
 
     var btn = document.getElementById('themeToggle');
     if (btn) {
@@ -55,11 +58,33 @@
       var mq = window.matchMedia('(prefers-color-scheme: light)');
       var onSystemChange = function (e) {
         if (getSavedTheme()) return;
-        applyTheme(e.matches ? 'light' : 'dark');
+        applyTheme(e.matches ? 'light' : 'dark', false);
       };
       if (mq && typeof mq.addEventListener === 'function') mq.addEventListener('change', onSystemChange);
       else if (mq && typeof mq.addListener === 'function') mq.addListener(onSystemChange);
     } catch (e) {}
+
+    // Tema diubah dari landing page (tab lain) -> ikuti langsung.
+    window.addEventListener('storage', function (e) {
+      if (e.key === THEME_KEY && (e.newValue === 'light' || e.newValue === 'dark')) {
+        applyTheme(e.newValue, false);
+      }
+    });
+
+    // Cadangan: saat tab halaman ini kembali aktif, samakan dengan tema tersimpan.
+    window.addEventListener('focus', function () {
+      var saved = getSavedTheme();
+      if (saved && saved !== document.documentElement.getAttribute('data-theme')) {
+        applyTheme(saved, false);
+      }
+    });
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) return;
+      var saved = getSavedTheme();
+      if (saved && saved !== document.documentElement.getAttribute('data-theme')) {
+        applyTheme(saved, false);
+      }
+    });
   }
 
   initTheme();

@@ -15,7 +15,8 @@
 /* Anti-FOUC: terapkan tema tersimpan sebelum CSS render agar tidak kedip */
 (function () {
   try {
-    var saved = localStorage.getItem('stussy-theme');
+    var saved = null;
+    try { saved = localStorage.getItem('stussy-theme'); } catch (e) { saved = null; }
     var theme = saved === 'light' || saved === 'dark'
       ? saved
       : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
@@ -23,6 +24,7 @@
     document.documentElement.style.colorScheme = theme;
   } catch (e) {
     document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.style.colorScheme = 'dark';
   }
 })();
 </script>

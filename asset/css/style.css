@@ -7,6 +7,8 @@
   --fg: #fff;
   --muted: #777;
   --accent: #fff;
+  --error: #ff5c5c;
+  --success: #4ade80;
 
   --font-display: "Big Shoulders Display", sans-serif;
   --font-body: "Space Grotesk", sans-serif;
@@ -29,6 +31,8 @@
   --fg: #141414;
   --muted: #6f6a61;
   --accent: #141414;
+  --error: #d92d20;
+  --success: #12805c;
   --line: rgba(0, 0, 0, 0.1);
 }
 
@@ -1085,9 +1089,9 @@ textarea {
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--fg);
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(0, 0, 0, 0.18);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 999px;
   padding: 6px 12px;
   backdrop-filter: blur(8px);
