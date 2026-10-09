@@ -684,6 +684,16 @@ textarea {
   object-fit: cover;
   object-position: center 20%;
   display: block;
+  transition: opacity 0.45s ease;
+}
+.hero-bg-light {
+  opacity: 0;
+}
+:root[data-theme="light"] .hero-bg-dark {
+  opacity: 0;
+}
+:root[data-theme="light"] .hero-bg-light {
+  opacity: 1;
 }
 .hero-overlay {
   position: absolute;
