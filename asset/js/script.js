@@ -499,10 +499,27 @@
     var els = document.querySelectorAll('.reveal');
     if (!els.length) return;
 
+    els.forEach(function (el) {
+      var text = el.textContent;
+      if (el.children.length === 0 && text.trim().length > 0) {
+        el.textContent = '';
+        text.trim().split('').forEach(function (ch, i) {
+          var span = document.createElement('span');
+          span.className = 'split-char';
+          span.textContent = ch === ' ' ? '\u00A0' : ch;
+          span.style.transitionDelay = (i * 0.035) + 's';
+          el.appendChild(span);
+        });
+      }
+    });
+
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          entry.target.querySelectorAll('.split-char').forEach(function (ch) {
+            ch.classList.add('split-visible');
+          });
           observer.unobserve(entry.target);
         }
       });
