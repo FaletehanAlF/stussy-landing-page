@@ -25,6 +25,7 @@
     initCategoryFilter();
     initContactForm();
     initNewsletter();
+    if (window.feather) feather.replace();
     initScrollReveal();
     initHeroParallax();
     initScrollProgress();
