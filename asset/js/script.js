@@ -65,6 +65,9 @@
 
   function applyTheme(theme, persist) {
     var next = theme === 'light' ? 'light' : 'dark';
+    // Siapkan crossfade hero (decode + compositor layer) sebelum atribut tema diganti,
+    // supaya pergantian foto dark <-> light mulus tanpa kedip/lag/patah.
+    smoothHeroSwap();
     document.documentElement.setAttribute('data-theme', next);
     try { document.documentElement.style.colorScheme = next; } catch (e) {}
     if (persist !== false) {

@@ -300,7 +300,6 @@ html {
 }
 body,
 .navbar,
-.hero-bg img,
 .product-card,
 .btn {
   transition:
@@ -717,21 +716,38 @@ body,
   z-index: 0;
 }
 .hero-bg img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
   display: block;
-  transition: opacity 0.45s ease;
+  pointer-events: none;
+  /* Crossfade murni di compositor (GPU): hanya opacity yang berubah,
+     tanpa layout/repaint sehingga ganti tema mulus 60fps, tidak lag/patah. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition: opacity 0.6s ease;
 }
+/* Selama crossfade, kunci kedua foto sebagai compositor layer (ditambah/dilepas via JS). */
+.hero-bg.is-crossfading img {
+  will-change: opacity;
+}
+/* Tema gelap (default): tampilkan "asset/image/image copy.png" */
+.hero-bg-dark {
+  opacity: 1;
+}
+/* Tema terang: crossfade ke "asset/image/image copy 2.png"
+   (img light ada di bawah overlay & di atas img dark sesuai urutan DOM) */
 .hero-bg-light {
   opacity: 0;
 }
 :root[data-theme="light"] .hero-bg-dark {
-  opacity: 1;
+  opacity: 0;
 }
 :root[data-theme="light"] .hero-bg-light {
-  opacity: 0;
+  opacity: 1;
 }
 :root[data-theme="light"] .hero-bg img {
   background: #000;
