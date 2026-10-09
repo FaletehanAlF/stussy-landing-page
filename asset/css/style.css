@@ -1634,11 +1634,11 @@ textarea {
 }
 .field-error {
   font-size: 11px;
-  color: var(--fg);
+  color: var(--error);
   min-height: 14px;
 }
 .field.invalid .input-wrap {
-  border-color: var(--fg);
+  border-color: var(--error);
 }
 .form-success {
   display: none;
