@@ -728,10 +728,13 @@ body,
   opacity: 0;
 }
 :root[data-theme="light"] .hero-bg-dark {
-  opacity: 0;
+  opacity: 1;
 }
 :root[data-theme="light"] .hero-bg-light {
-  opacity: 1;
+  opacity: 0;
+}
+:root[data-theme="light"] .hero-bg img {
+  background: #000;
 }
 .hero-overlay {
   position: absolute;
